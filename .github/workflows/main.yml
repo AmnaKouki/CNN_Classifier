@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -17,12 +18,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-
       - name: Prepare dataset
         run: |
           mkdir -p data
           echo "Add your dataset to the 'data/test' folder."
 
-       - name: Test Inference Mode
-         run: |
+      - name: Test Inference Mode
+        run: |
           python main.py --mode test --data_path ./data/test --model_path ./models
